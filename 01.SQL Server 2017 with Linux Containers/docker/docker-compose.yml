@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  mssql-server:
+    build:
+        context: ./SQLServer
+    image: <ServerName>.azurecr.io/mssql-server-linux
+    container_name: MSSQL
+    hostname: SoLC1
+    environment:
+        ACCEPT_EULA: Y
+        SA_PASSWORD: ${SA_PASSWORD}
+        # MSSQL_PID: ${MSSQL_PID}
+        MSSQL_LCID: 1041
+        TZ: Asia/Tokyo
+        MSSQL_COLLATION: Japanese_XJIS_140_CI_AS
+        MSSQL_ENABLE_HADR: Y
+        DBPass: ${DBPass}
+    command: /bin/bash /usr/mssql/docker-entrypoint.sh
+    ports:
+      - "11433:1433"
+    volumes:
+      - /var/opt/docker_volume:/var/opt/mssql/data
+    restart: always
+  wordpress:
+    build:
+      context: ./WordPress
+    image: <ServerName>.azurecr.io/project-nami
+    container_name: Nami
+    ports:
+      - "80:80"
+    depends_on:
+      - mssql-server
+    restart: always

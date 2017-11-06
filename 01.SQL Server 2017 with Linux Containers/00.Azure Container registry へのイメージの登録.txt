@@ -1,0 +1,18 @@
+docker login <ServerName>.azurecr.io -u <UserrName> -p <AccessKey>
+
+docker tag microsoft/mssql-server-linux <ServerName>.azurecr.io/mssql-server-linux
+docker tag microsoft/mssql-server-linux:latest <ServerName>.azurecr.io/mssql-server-linux:latest
+docker tag microsoft/mssql-server-linux:2017-CU1 <ServerName>.azurecr.io/mssql-server-linux:2017-CU1
+
+docker push <ServerName>.azurecr.io/mssql-server-linux
+docker push <ServerName>.azurecr.io/mssql-server-linux:latest
+docker push <ServerName>.azurecr.io/mssql-server-linux:2017-CU1
+
+docker tag <ServerName>.azurecr.io/mssql-server-linux <ServerName>.azurecr.io/mssql-server-linux:2017-GA
+docker push <ServerName>.azurecr.io/mssql-server-linux:2017-GA
+
+docker tag ubuntu <ServerName>.azurecr.io/ubuntu
+docker push <ServerName>.azurecr.io/ubuntu
+
+docker tag project-nami <ServerName>.azurecr.io/project-nami
+docker push <ServerName>.azurecr.io/project-nami

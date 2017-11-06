@@ -1,0 +1,8 @@
+sudo pcs resource cleanup
+
+crm_mon -f -A -i 3
+
+pcs resource move ag_cluster-master SoL01.techsummit.local --master
+pcs resource move ag_cluster-master SoL02.techsummit.local --master
+pcs resource move ag_cluster-master SoL03.techsummit.local --master
+

@@ -1,0 +1,14 @@
+# イメージの確認
+cd /home/root/docker
+docker images
+
+# 起動する環境の確認
+clear
+cat docker-compose.yml
+
+# コンテナーの起動
+docker-compose up
+
+# 別ターミナルから実行
+docker-compose ps
+ls /var/opt/docker_volume/

@@ -1,0 +1,16 @@
+USE [TutorialDB]
+GO
+
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = '<Password>'  
+GO
+
+CREATE DATABASE SCOPED CREDENTIAL MLModelsCredentials
+WITH IDENTITY = 'SHARED ACCESS SIGNATURE',
+SECRET = 'SharedAccessSignature'
+GO
+
+CREATE EXTERNAL DATA SOURCE MLModelsStorage
+WITH (TYPE = BLOB_STORAGE,
+LOCATION = 'https://<BlobName>.blob.core.windows.net',
+CREDENTIAL= MLModelsCredentials)
+GO

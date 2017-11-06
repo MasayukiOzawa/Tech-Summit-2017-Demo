@@ -1,0 +1,4 @@
+docker run -v /dockerdata:/var/opt/mssql/data -d --name SoL --restart=always  --hostname SoL01c1 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=<Password>' -e 'MSSQL_PID=Express' -e 'MSSQL_LCID=1041' -e 'TZ=Asia/Tokyo' -e 'MSSQL_COLLATION=Japanese_XJIS_140_CI_AS' -p 11433:1433 -p 15022:5022 microsoft/mssql-server-linux:2017-GA
+
+docker create -v /dockerdata:/var/opt/mssql/data --name data-c busybox
+docker run --volumes-from data-c -d --name SoL  --restart=always  --hostname SoL01c1 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=<Password>' -e 'MSSQL_PID=Express' -e 'MSSQL_LCID=1041' -e 'TZ=Asia/Tokyo' -e 'MSSQL_COLLATION=Japanese_XJIS_140_CI_AS' -p 11433:1433 -p 15022:5022 microsoft/mssql-server-linux:2017-GA

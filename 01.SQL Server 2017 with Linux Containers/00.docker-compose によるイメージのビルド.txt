@@ -1,0 +1,16 @@
+docker images
+
+cd /home/root/DeployNami
+MSSQL_PID=Developer docker-compose up -d --build
+
+sudo ls /var/opt/docker_volume/
+docker-compose logs --tail=20 mssql-server
+
+cd /home/root/DeployNami
+docker-compose down
+
+sudo ls /var/opt/docker_volume/
+
+
+docker rmi mssql-server-linux
+sudo rm -Rf /var/opt/docker_volume/
